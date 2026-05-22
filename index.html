@@ -154,6 +154,46 @@
         textarea:focus { border-color: var(--bright-red); box-shadow: 0 0 0 3px rgba(255,26,26,0.12); }
         textarea::placeholder { color: #444; }
 
+        /* ── USERNAME FIELD (NEW) ── */
+        .tg-input-wrap { position: relative; }
+        .tg-at {
+            position: absolute; right: 16px; top: 50%;
+            transform: translateY(-50%);
+            color: #555; font-size: 16px; font-weight: 700; pointer-events: none;
+        }
+        .text-input {
+            width: 100%;
+            background: #000;
+            border: 1px solid #222;
+            border-radius: 14px;
+            color: #fff;
+            font-family: 'Assistant', sans-serif;
+            font-size: 15px; line-height: 1.6;
+            padding: 16px 36px 16px 16px;
+            outline: none; -webkit-appearance: none;
+            transition: border-color .2s, box-shadow .2s;
+            direction: ltr; text-align: right;
+        }
+        .text-input:focus { border-color: var(--bright-red); box-shadow: 0 0 0 3px rgba(255,26,26,0.12); }
+        .text-input::placeholder { color: #444; }
+        .text-input.error { border-color: #ff4444; box-shadow: 0 0 0 3px rgba(255,68,68,0.12); }
+        .field-error { font-size: 11px; color: #ff4444; margin-top: 6px; display: none; }
+        .field-error.visible { display: block; }
+        .field-hint { font-size: 11px; color: #444; margin-top: 6px; }
+
+        /* ── SELECT BUTTONS ── */
+        .select-group { display: flex; flex-wrap: wrap; gap: 8px; }
+        .sel-btn {
+            background: #000; border: 1px solid #333; border-radius: 10px;
+            color: #777; font-family: 'Assistant', sans-serif;
+            font-size: 13px; font-weight: 700; padding: 10px 16px;
+            cursor: pointer; transition: all .2s; user-select: none;
+        }
+        .sel-btn.active {
+            background: rgba(153,0,0,0.2); border-color: var(--bright-red);
+            color: #fff;
+        }
+
         .file-pick {
             background: #000; border: 1px solid #222; border-radius: 14px;
             padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;
@@ -226,16 +266,25 @@
         }
         .success-box strong { color: #e04444; }
         .tg-btn {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: #fff; color: #000; border-radius: 50px;
-            padding: 16px 28px;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            background: linear-gradient(135deg, #ff1a1a 0%, #990000 100%);
+            color: #fff; border-radius: 18px;
+            width: 100%;
+            padding: 22px 28px;
             font-family: 'Assistant', sans-serif;
-            font-size: 14px; font-weight: 800;
-            text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em;
-            transition: background .2s, color .2s;
+            font-size: 18px; font-weight: 800;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em;
+            transition: all .2s;
+            border: 1px solid rgba(255,100,100,0.4);
+            box-shadow: 0 0 30px rgba(255,26,26,0.4), 0 0 60px rgba(153,0,0,0.2);
+            animation: pulse 2s ease-in-out infinite;
         }
-        .tg-btn:active { background: var(--bright-red); color: #fff; }
-        .tg-btn svg { width: 20px; height: 20px; fill: currentColor; }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(255,26,26,0.4), 0 0 60px rgba(153,0,0,0.2); }
+            50%       { box-shadow: 0 0 45px rgba(255,26,26,0.7), 0 0 80px rgba(153,0,0,0.4); }
+        }
+        .tg-btn:active { transform: scale(0.97); }
+        .tg-btn svg { width: 24px; height: 24px; fill: currentColor; flex-shrink: 0; }
     </style>
 </head>
 <body>
@@ -287,12 +336,28 @@
         <div class="step2-title"><span class="step-num">2</span>הפוסט שלך</div>
         <div class="step-sub" style="margin-right:40px">ספר/י על העדפות, גבולות ומי את/ה.</div>
 
+        <!-- שם משתמש טלגרם -->
         <div class="field-group">
-            <label class="field-label">תוכן הפוסט</label>
-            <textarea id="postContent" rows="8" placeholder="למשל: סוויץ׳ 28, מחפשת קשר של שליטה והתמסרות..."></textarea>
+            <label class="field-label">👤 שם משתמש בטלגרם *</label>
+            <div class="tg-input-wrap">
+                <span class="tg-at">@</span>
+                <input type="text" class="text-input" id="tgUsername" placeholder="username"
+                    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </div>
+            <div class="field-error" id="tgError">שם משתמש בטלגרם הוא שדה חובה</div>
+            <div class="field-hint">שם המשתמש שלך בטלגרם, ללא @ — חובה למילוי</div>
         </div>
+
+        <!-- ספר על עצמך -->
         <div class="field-group">
-            <label class="field-label">העלאת תמונה</label>
+            <label class="field-label">💬 ספר/י על עצמך *</label>
+            <textarea id="fieldAbout" rows="4" placeholder="קצת עליך, מה מחפש/ת..."></textarea>
+            <div class="field-error" id="aboutError">שדה חובה</div>
+        </div>
+
+        <!-- תמונה -->
+        <div class="field-group">
+            <label class="field-label">📷 העלאת תמונה</label>
             <input type="file" id="photoInput" accept="image/*" style="display:none">
             <div class="file-pick" id="filePick">
                 <span class="file-name" id="fileName">לחץ/י לבחירת קובץ</span>
@@ -302,6 +367,65 @@
                     </svg>
                 </div>
             </div>
+        </div>
+
+        <!-- שם / כינוי -->
+        <div class="field-group">
+            <label class="field-label">😊 שם / כינוי *</label>
+            <input type="text" class="text-input" id="fieldName" placeholder="איך לקרוא לך?">
+            <div class="field-error" id="nameError">שדה חובה</div>
+        </div>
+
+        <!-- גיל -->
+        <div class="field-group">
+            <label class="field-label">🔞 גיל *</label>
+            <input type="number" class="text-input" id="fieldAge" placeholder="גיל" min="18" max="99">
+            <div class="field-error" id="ageError">שדה חובה (18+)</div>
+        </div>
+
+        <!-- הצד שלי -->
+        <div class="field-group">
+            <label class="field-label">🎭 הצד שלי *</label>
+            <div class="select-group" id="sideSelect">
+                <div class="sel-btn" data-val="שולט">שולט</div>
+                <div class="sel-btn" data-val="נשלט">נשלט</div>
+                <div class="sel-btn" data-val="נשלטת">נשלטת</div>
+                <div class="sel-btn" data-val="סוויץ׳">סוויץ׳</div>
+                <div class="sel-btn" data-val="עדיין מגלה">עדיין מגלה</div>
+            </div>
+            <div class="field-error" id="sideError">שדה חובה</div>
+        </div>
+
+        <!-- סטטוס -->
+        <div class="field-group">
+            <label class="field-label">🔗 סטטוס</label>
+            <div class="select-group" id="statusSelect">
+                <div class="sel-btn" data-val="פנוי/ה">פנוי/ה</div>
+                <div class="sel-btn" data-val="בקשר">בקשר</div>
+                <div class="sel-btn" data-val="מורכב">מורכב</div>
+            </div>
+        </div>
+
+        <!-- ניסיון -->
+        <div class="field-group">
+            <label class="field-label">⛓️ ניסיון</label>
+            <div class="select-group" id="expSelect">
+                <div class="sel-btn" data-val="מתחיל/ה">מתחיל/ה</div>
+                <div class="sel-btn" data-val="בינוני">בינוני</div>
+                <div class="sel-btn" data-val="מנוסה">מנוסה</div>
+            </div>
+        </div>
+
+        <!-- גבולות אדומים -->
+        <div class="field-group">
+            <label class="field-label">❌ גבולות אדומים</label>
+            <input type="text" class="text-input" id="fieldLimits" placeholder="מה הם הגבולות שלך?">
+        </div>
+
+        <!-- מטרת הכניסה -->
+        <div class="field-group">
+            <label class="field-label">🎯 מטרת הכניסה לקבוצה</label>
+            <input type="text" class="text-input" id="fieldGoal" placeholder="חברויות, קשר, סקרנות...">
         </div>
     </div>
 
@@ -317,7 +441,7 @@
             </div>
             <a href="https://t.me/+C2o1zdKnal82YTQ0" target="_blank" class="tg-btn">
                 <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.39.52-.46-.01-1.33-.26-1.98-.48-.8-.27-1.43-.42-1.37-.89.03-.25.38-.51 1.03-.78 4.04-1.75 6.73-2.91 8.07-3.48 3.84-1.6 4.63-1.88 5.15-1.89.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.13-.03.2z"/></svg>
-                לחץ כאן לכניסה והמתנה לאישור
+                לחץ כאן לכניסה לקבוצה ←
             </a>
         </div>
     </div>
@@ -334,6 +458,7 @@
     const TELEGRAM_CHAT_ID = '-1002472743528';
     let currentStep = 1;
     const checked = { r1: false, r2: false };
+    const selections = { side: '', status: '', exp: '' };
 
     function setupCheck(rowId, boxId, markId, key) {
         document.getElementById(rowId).addEventListener('click', function() {
@@ -349,6 +474,20 @@
     setupCheck('row1','box1','mark1','r1');
     setupCheck('row2','box2','mark2','r2');
 
+    // Select buttons
+    function setupSelect(groupId, key) {
+        document.getElementById(groupId).querySelectorAll('.sel-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.getElementById(groupId).querySelectorAll('.sel-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selections[key] = this.dataset.val;
+            });
+        });
+    }
+    setupSelect('sideSelect', 'side');
+    setupSelect('statusSelect', 'status');
+    setupSelect('expSelect', 'exp');
+
     document.getElementById('filePick').addEventListener('click', function() {
         document.getElementById('photoInput').click();
     });
@@ -357,6 +496,12 @@
             document.getElementById('fileName').textContent = e.target.files[0].name;
             document.getElementById('fileName').classList.add('selected');
         }
+    });
+
+    document.getElementById('tgUsername').addEventListener('input', function() {
+        this.value = this.value.replace(/^@+/, '').replace(/\s/g, '');
+        document.getElementById('tgError').classList.remove('visible');
+        this.classList.remove('error');
     });
 
     document.getElementById('mainBtn').addEventListener('click', function() {
@@ -387,18 +532,49 @@
         }
     }
 
+    function showErr(id, msg) {
+        const el = document.getElementById(id);
+        if (msg) el.textContent = msg;
+        el.classList.add('visible');
+    }
+
     async function submitForm() {
-        const postText = document.getElementById('postContent').value.trim();
+        const username = document.getElementById('tgUsername').value.trim().replace(/^@+/, '');
+        const name     = document.getElementById('fieldName').value.trim();
+        const age      = document.getElementById('fieldAge').value.trim();
+        const about    = document.getElementById('fieldAbout').value.trim();
+        const limits   = document.getElementById('fieldLimits').value.trim();
+        const goal     = document.getElementById('fieldGoal').value.trim();
         const photoFile = document.getElementById('photoInput').files[0];
-        if (!postText) { document.getElementById('postContent').focus(); return; }
+
+        let hasError = false;
+        if (!username) { showErr('tgError', 'שם משתמש בטלגרם הוא שדה חובה'); document.getElementById('tgUsername').classList.add('error'); hasError = true; }
+        if (!name)     { showErr('nameError', 'שדה חובה'); hasError = true; }
+        if (!age || parseInt(age) < 18) { showErr('ageError', 'שדה חובה (18+)'); hasError = true; }
+        if (!selections.side) { showErr('sideError', 'נא לבחור צד'); hasError = true; }
+        if (!about)    { showErr('aboutError', 'שדה חובה'); hasError = true; }
+        if (hasError) return;
+
         if (!photoFile) { alert('נא לבחור תמונה'); return; }
+
+        const caption = `🔥 היכרות – TalkingBDSM
+
+😊 ${name} | 🔞 ${age} | 🎭 ${selections.side}
+🔗 ${selections.status || '-'} | ⛓️ ${selections.exp || '-'}
+
+❌ גבולות: ${limits || '-'}
+💬 ${about}
+🎯 מטרה: ${goal || '-'}
+
+👤 @${username}`;
+
         const btn = document.getElementById('mainBtn');
         btn.disabled = true; btn.textContent = 'שולח...';
         try {
             const formData = new FormData();
             formData.append('chat_id', TELEGRAM_CHAT_ID);
             formData.append('photo', photoFile);
-            formData.append('caption', `🔞 פוסט היכרות חדש:\n\n${postText}`);
+            formData.append('caption', caption);
             const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, { method: 'POST', body: formData });
             if (res.ok) { goStep(3); } else { throw new Error(); }
         } catch {
@@ -407,5 +583,6 @@
         }
     }
 </script>
+
 </body>
 </html>
