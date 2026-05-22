@@ -557,16 +557,17 @@
 
         if (!photoFile) { alert('נא לבחור תמונה'); return; }
 
-        const caption = `🔥 היכרות – TalkingBDSM
+        const caption = `🔥 פוסט היכרות חדש – TalkingBDSM
 
-😊 ${name} | 🔞 ${age} | 🎭 ${selections.side}
-🔗 ${selections.status || '-'} | ⛓️ ${selections.exp || '-'}
-
-❌ גבולות: ${limits || '-'}
-💬 ${about}
-🎯 מטרה: ${goal || '-'}
-
-👤 @${username}`;
+👤 טלגרם: @${username}
+💬 ספר/י על עצמך: ${about}
+😊 שם / כינוי: ${name}
+🔞 גיל: ${age}
+🎭 הצד שלי: ${selections.side}
+🔗 סטטוס: ${selections.status || 'לא צוין'}
+⛓️ ניסיון: ${selections.exp || 'לא צוין'}
+❌ גבולות אדומים: ${limits || 'לא צוין'}
+🎯 מטרת הכניסה לקבוצה: ${goal || 'לא צוין'}`;
 
         const btn = document.getElementById('mainBtn');
         btn.disabled = true; btn.textContent = 'שולח...';
