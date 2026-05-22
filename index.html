@@ -181,6 +181,19 @@
             font-size: 10px; font-weight: 800; color: var(--bright-red);
             text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 7px;
         }
+        .q-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .q-input-prefix {
+            position: absolute;
+            right: 14px;
+            color: #555;
+            font-weight: 700;
+            font-size: 16px;
+            user-select: none;
+        }
         .q-input {
             width: 100%; background: #000; border: 1px solid #222;
             border-radius: 12px; color: #fff;
@@ -188,6 +201,7 @@
             padding: 13px 14px; outline: none; -webkit-appearance: none;
             transition: border-color .2s, box-shadow .2s;
         }
+        .q-input.has-prefix { padding-right: 32px; direction: ltr; text-align: right; }
         .q-input:focus { border-color: var(--bright-red); box-shadow: 0 0 0 3px rgba(255,26,26,0.12); }
         .q-input::placeholder { color: #333; }
         .q-textarea {
@@ -325,19 +339,26 @@
         <div class="step2-title"><span class="step-num">2</span>שאלון היכרות</div>
         <div class="step-sub" style="margin-right:40px">מלא/י את השאלון – ההודעה תיבנה אוטומטית ✨</div>
 
-        <!-- בסיסי -->
         <div class="q-section-title">👤 פרטים בסיסיים</div>
 
         <div class="q-field">
-            <div class="q-label">😊 שם / כינוי</div>
+            <div class="q-label">😊 שם / כינוי *</div>
             <input class="q-input" id="qName" type="text" placeholder="איך לקרוא לך?">
         </div>
+        
+        <div class="q-field">
+            <div class="q-label">📱 שם משתמש בטלגרם (Username) *</div>
+            <div class="q-input-wrapper">
+                <span class="q-input-prefix">@</span>
+                <input class="q-input has-prefix" id="qTelegram" type="text" placeholder="username" autocomplete="off" spellcheck="false">
+            </div>
+        </div>
+
         <div class="q-field">
             <div class="q-label">🔞 גיל</div>
             <input class="q-input" id="qAge" type="number" placeholder="גיל" style="max-width:120px">
         </div>
 
-        <!-- זהות -->
         <div class="q-section-title">🎭 זהות בקהילה</div>
 
         <div class="q-field">
@@ -367,7 +388,6 @@
             </div>
         </div>
 
-        <!-- גבולות -->
         <div class="q-section-title">⚠️ גבולות והעדפות</div>
 
         <div class="q-field">
@@ -390,12 +410,11 @@
             </div>
         </div>
 
-        <!-- תמונה -->
         <div class="q-section-title">📸 תמונה</div>
         <div class="field-group">
             <input type="file" id="photoInput" accept="image/*" style="display:none">
             <div class="file-pick" id="filePick">
-                <span class="file-name" id="fileName">לחץ/י לבחירת קובץ</span>
+                <span class="file-name" id="fileName">לחץ/י לבחירת קובץ *</span>
                 <div class="file-icon">
                     <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -430,12 +449,10 @@
 </div>
 
 <script>
-    const TELEGRAM_BOT_TOKEN = '7733567179:AAFxtpuTgxt5Ahp_yBQnXXQAY3NT_Zcctg0';
-    const TELEGRAM_CHAT_ID = '-1002472743528';
+    const BACKEND_URL = 'send_post.php'; 
+
     let currentStep = 1;
     const checked = { r1: false, r2: false };
-
-    // Chips state
     const chipsState = { chipsRole: null, chipsStatus: null, chipsExp: null, chipsRelation: null };
 
     function setupCheck(rowId, boxId, markId, key) {
@@ -452,7 +469,6 @@
     setupCheck('row1','box1','mark1','r1');
     setupCheck('row2','box2','mark2','r2');
 
-    // Setup chips
     ['chipsRole','chipsStatus','chipsExp','chipsRelation'].forEach(function(groupId) {
         const group = document.getElementById(groupId);
         group.querySelectorAll('.q-chip').forEach(function(chip) {
@@ -504,6 +520,7 @@
 
     function buildMessage() {
         const name     = document.getElementById('qName').value.trim() || '—';
+        let telegram   = document.getElementById('qTelegram').value.trim() || '—';
         const age      = document.getElementById('qAge').value.trim() || '—';
         const role     = chipsState.chipsRole || '—';
         const status   = chipsState.chipsStatus || '—';
@@ -512,10 +529,12 @@
         const green    = document.getElementById('qGreen').value.trim() || '—';
         const relation = chipsState.chipsRelation || '—';
 
+        if (telegram.startsWith('@')) { telegram = telegram.substring(1); }
+
         return `🔥 פוסט היכרות חדש – TalkingBDSM\n\n` +
                `😊 שם / כינוי: ${name}\n` +
-               `🔞 גיל: ${age}\n` +
-
+               `📱 טלגרם: @${telegram}\n` +
+               `🔞 גיל: ${age}\n\n` +
                `🎭 הצד שלי: ${role}\n` +
                `🔗 סטטוס: ${status}\n` +
                `⛓️ ניסיון: ${exp}\n\n` +
@@ -525,19 +544,30 @@
     }
 
     async function submitForm() {
+        const name = document.getElementById('qName').value.trim();
+        const telegram = document.getElementById('qTelegram').value.trim();
         const photoFile = document.getElementById('photoInput').files[0];
-        if (!photoFile) { alert('נא לבחור תמונה'); return; }
         const btn = document.getElementById('mainBtn');
+        
+        if (!name) { alert('נא למלא שם או כינוי.'); return; }
+        if (!telegram) { alert('חובה להזין שם משתמש בטלגרם כדי שנוכל לאשר אותך.'); return; }
+        if (!photoFile) { alert('נא לבחור תמונה לפוסט.'); return; }
+
         btn.disabled = true; btn.textContent = 'שולח...';
+        
         try {
             const formData = new FormData();
-            formData.append('chat_id', TELEGRAM_CHAT_ID);
-            formData.append('photo', photoFile);
             formData.append('caption', buildMessage());
-            const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, { method: 'POST', body: formData });
-            if (res.ok) { goStep(3); } else { throw new Error(); }
+            formData.append('photo', photoFile);
+
+            const res = await fetch(BACKEND_URL, { method: 'POST', body: formData });
+            if (res.ok) { 
+                goStep(3); 
+            } else { 
+                throw new Error(); 
+            }
         } catch {
-            alert('שגיאה בשליחה. נסה שנית.');
+            alert('שגיאה בשליחה. המערכת לא הצליחה ליצור קשר עם השרת.');
             btn.disabled = false; btn.textContent = 'שלח לאישור';
         }
     }
