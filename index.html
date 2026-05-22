@@ -169,58 +169,6 @@
         .file-icon svg { width: 18px; height: 18px; stroke: var(--bright-red); }
         .field-group { margin-bottom: 20px; }
 
-        /* ── QUESTIONNAIRE ── */
-        .q-section-title {
-            font-size: 10px; font-weight: 800; color: #444;
-            text-transform: uppercase; letter-spacing: 0.15em;
-            margin: 24px 0 12px; border-top: 1px solid #111; padding-top: 16px;
-        }
-        .q-field { margin-bottom: 14px; }
-        .q-label {
-            display: flex; align-items: center; gap: 6px;
-            font-size: 10px; font-weight: 800; color: var(--bright-red);
-            text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 7px;
-        }
-        .q-input-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        .q-input-prefix {
-            position: absolute;
-            right: 14px;
-            color: #555;
-            font-weight: 700;
-            font-size: 16px;
-            user-select: none;
-        }
-        .q-input {
-            width: 100%; background: #000; border: 1px solid #222;
-            border-radius: 12px; color: #fff;
-            font-family: 'Assistant', sans-serif; font-size: 15px;
-            padding: 13px 14px; outline: none; -webkit-appearance: none;
-            transition: border-color .2s, box-shadow .2s;
-        }
-        .q-input.has-prefix { padding-right: 32px; direction: ltr; text-align: right; }
-        .q-input:focus { border-color: var(--bright-red); box-shadow: 0 0 0 3px rgba(255,26,26,0.12); }
-        .q-input::placeholder { color: #333; }
-        .q-textarea {
-            width: 100%; background: #000; border: 1px solid #222;
-            border-radius: 12px; color: #fff;
-            font-family: 'Assistant', sans-serif; font-size: 15px; line-height: 1.6;
-            padding: 13px 14px; resize: none; outline: none; -webkit-appearance: none;
-            transition: border-color .2s, box-shadow .2s;
-        }
-        .q-textarea:focus { border-color: var(--bright-red); box-shadow: 0 0 0 3px rgba(255,26,26,0.12); }
-        .q-textarea::placeholder { color: #333; }
-        .q-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-        .q-chip {
-            background: #0d0d0d; border: 1px solid #222; border-radius: 20px;
-            color: #777; font-size: 13px; font-weight: 700;
-            padding: 8px 16px; cursor: pointer; transition: all .2s; -webkit-user-select: none; user-select: none;
-        }
-        .q-chip.active { background: rgba(153,0,0,0.2); border-color: var(--bright-red); color: #fff; }
-
         .step2-title { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 4px; }
         .step-num {
             width: 30px; height: 30px; border-radius: 50%;
@@ -336,85 +284,18 @@
 
     <!-- STEP 2 -->
     <div class="step" id="step2">
-        <div class="step2-title"><span class="step-num">2</span>שאלון היכרות</div>
-        <div class="step-sub" style="margin-right:40px">מלא/י את השאלון – ההודעה תיבנה אוטומטית ✨</div>
+        <div class="step2-title"><span class="step-num">2</span>הפוסט שלך</div>
+        <div class="step-sub" style="margin-right:40px">ספר/י על העדפות, גבולות ומי את/ה.</div>
 
-        <div class="q-section-title">👤 פרטים בסיסיים</div>
-
-        <div class="q-field">
-            <div class="q-label">😊 שם / כינוי *</div>
-            <input class="q-input" id="qName" type="text" placeholder="איך לקרוא לך?">
-        </div>
-        
-        <div class="q-field">
-            <div class="q-label">📱 שם משתמש בטלגרם (Username) *</div>
-            <div class="q-input-wrapper">
-                <span class="q-input-prefix">@</span>
-                <input class="q-input has-prefix" id="qTelegram" type="text" placeholder="username" autocomplete="off" spellcheck="false">
-            </div>
-        </div>
-
-        <div class="q-field">
-            <div class="q-label">🔞 גיל</div>
-            <input class="q-input" id="qAge" type="number" placeholder="גיל" style="max-width:120px">
-        </div>
-
-        <div class="q-section-title">🎭 זהות בקהילה</div>
-
-        <div class="q-field">
-            <div class="q-label">🎭 הצד שלי</div>
-            <div class="q-chips" id="chipsRole">
-                <div class="q-chip" data-val="נשלט">נשלט</div>
-                <div class="q-chip" data-val="נשלטת">נשלטת</div>
-                <div class="q-chip" data-val="שולט">שולט</div>
-                <div class="q-chip" data-val="שולטת">שולטת</div>
-                <div class="q-chip" data-val="סוויץ'">סוויץ'</div>
-            </div>
-        </div>
-        <div class="q-field">
-            <div class="q-label">🔗 סטטוס</div>
-            <div class="q-chips" id="chipsStatus">
-                <div class="q-chip" data-val="פנוי/ה">פנוי/ה</div>
-                <div class="q-chip" data-val="בקשר זוגי">בקשר זוגי</div>
-                <div class="q-chip" data-val="בקשר פתוח">בקשר פתוח</div>
-            </div>
-        </div>
-        <div class="q-field">
-            <div class="q-label">⛓️ ניסיון</div>
-            <div class="q-chips" id="chipsExp">
-                <div class="q-chip" data-val="מתחיל/ה">מתחיל/ה</div>
-                <div class="q-chip" data-val="קצת ניסיון">קצת ניסיון</div>
-                <div class="q-chip" data-val="מנוסה/ת">מנוסה/ת</div>
-            </div>
-        </div>
-
-        <div class="q-section-title">⚠️ גבולות והעדפות</div>
-
-        <div class="q-field">
-            <div class="q-label">❌ גבולות אדומים</div>
-            <textarea class="q-textarea" id="qLimits" rows="3" placeholder="מה בהחלט לא קורה אצלי..."></textarea>
-        </div>
-        <div class="q-field">
-            <div class="q-label">💬 ספר/י על עצמך</div>
-            <textarea class="q-textarea" id="qGreen" rows="4" placeholder="ספר/י קצת על עצמך, מה את/ה אוהב/ת, מה חשוב שנדע עליך..."></textarea>
-        </div>
-        <div class="q-field">
-            <div class="q-label">🎯 מטרת הכניסה לקבוצה</div>
-            <div class="q-chips" id="chipsRelation">
-                <div class="q-chip" data-val="היכרויות וחיבורים">היכרויות וחיבורים</div>
-                <div class="q-chip" data-val="ידע ולימוד">ידע ולימוד</div>
-                <div class="q-chip" data-val="קהילה וחברתי">קהילה וחברתי</div>
-                <div class="q-chip" data-val="שותף/ה לסשנים">שותף/ה לסשנים</div>
-                <div class="q-chip" data-val="קשר רציני">קשר רציני</div>
-                <div class="q-chip" data-val="הכל פתוח">הכל פתוח</div>
-            </div>
-        </div>
-
-        <div class="q-section-title">📸 תמונה</div>
         <div class="field-group">
+            <label class="field-label">תוכן הפוסט</label>
+            <textarea id="postContent" rows="8" placeholder="למשל: סוויץ׳ 28, מחפשת קשר של שליטה והתמסרות..."></textarea>
+        </div>
+        <div class="field-group">
+            <label class="field-label">העלאת תמונה</label>
             <input type="file" id="photoInput" accept="image/*" style="display:none">
             <div class="file-pick" id="filePick">
-                <span class="file-name" id="fileName">לחץ/י לבחירת קובץ *</span>
+                <span class="file-name" id="fileName">לחץ/י לבחירת קובץ</span>
                 <div class="file-icon">
                     <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -449,11 +330,10 @@
 </div>
 
 <script>
-    const BACKEND_URL = 'send_post.php'; 
-
+    const TELEGRAM_BOT_TOKEN = '7733567179:AAFxtpuTgxt5Ahp_yBQnXXQAY3NT_Zcctg0';
+    const TELEGRAM_CHAT_ID = '-1002472743528';
     let currentStep = 1;
     const checked = { r1: false, r2: false };
-    const chipsState = { chipsRole: null, chipsStatus: null, chipsExp: null, chipsRelation: null };
 
     function setupCheck(rowId, boxId, markId, key) {
         document.getElementById(rowId).addEventListener('click', function() {
@@ -468,17 +348,6 @@
     }
     setupCheck('row1','box1','mark1','r1');
     setupCheck('row2','box2','mark2','r2');
-
-    ['chipsRole','chipsStatus','chipsExp','chipsRelation'].forEach(function(groupId) {
-        const group = document.getElementById(groupId);
-        group.querySelectorAll('.q-chip').forEach(function(chip) {
-            chip.addEventListener('click', function() {
-                group.querySelectorAll('.q-chip').forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-                chipsState[groupId] = chip.dataset.val;
-            });
-        });
-    });
 
     document.getElementById('filePick').addEventListener('click', function() {
         document.getElementById('photoInput').click();
@@ -518,56 +387,22 @@
         }
     }
 
-    function buildMessage() {
-        const name     = document.getElementById('qName').value.trim() || '—';
-        let telegram   = document.getElementById('qTelegram').value.trim() || '—';
-        const age      = document.getElementById('qAge').value.trim() || '—';
-        const role     = chipsState.chipsRole || '—';
-        const status   = chipsState.chipsStatus || '—';
-        const exp      = chipsState.chipsExp || '—';
-        const limits   = document.getElementById('qLimits').value.trim() || '—';
-        const green    = document.getElementById('qGreen').value.trim() || '—';
-        const relation = chipsState.chipsRelation || '—';
-
-        if (telegram.startsWith('@')) { telegram = telegram.substring(1); }
-
-        return `🔥 פוסט היכרות חדש – TalkingBDSM\n\n` +
-               `😊 שם / כינוי: ${name}\n` +
-               `📱 טלגרם: @${telegram}\n` +
-               `🔞 גיל: ${age}\n\n` +
-               `🎭 הצד שלי: ${role}\n` +
-               `🔗 סטטוס: ${status}\n` +
-               `⛓️ ניסיון: ${exp}\n\n` +
-               `❌ גבולות אדומים: ${limits}\n` +
-               `💬 ספר/י על עצמך: ${green}\n` +
-               `🎯 מטרת הכניסה לקבוצה: ${relation}`;
-    }
-
     async function submitForm() {
-        const name = document.getElementById('qName').value.trim();
-        const telegram = document.getElementById('qTelegram').value.trim();
+        const postText = document.getElementById('postContent').value.trim();
         const photoFile = document.getElementById('photoInput').files[0];
+        if (!postText) { document.getElementById('postContent').focus(); return; }
+        if (!photoFile) { alert('נא לבחור תמונה'); return; }
         const btn = document.getElementById('mainBtn');
-        
-        if (!name) { alert('נא למלא שם או כינוי.'); return; }
-        if (!telegram) { alert('חובה להזין שם משתמש בטלגרם כדי שנוכל לאשר אותך.'); return; }
-        if (!photoFile) { alert('נא לבחור תמונה לפוסט.'); return; }
-
         btn.disabled = true; btn.textContent = 'שולח...';
-        
         try {
             const formData = new FormData();
-            formData.append('caption', buildMessage());
+            formData.append('chat_id', TELEGRAM_CHAT_ID);
             formData.append('photo', photoFile);
-
-            const res = await fetch(BACKEND_URL, { method: 'POST', body: formData });
-            if (res.ok) { 
-                goStep(3); 
-            } else { 
-                throw new Error(); 
-            }
+            formData.append('caption', `🔞 פוסט היכרות חדש:\n\n${postText}`);
+            const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, { method: 'POST', body: formData });
+            if (res.ok) { goStep(3); } else { throw new Error(); }
         } catch {
-            alert('שגיאה בשליחה. המערכת לא הצליחה ליצור קשר עם השרת.');
+            alert('שגיאה בשליחה. נסה שנית.');
             btn.disabled = false; btn.textContent = 'שלח לאישור';
         }
     }
