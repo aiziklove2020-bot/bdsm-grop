@@ -32,52 +32,26 @@
             padding: 0 16px calc(100px + env(safe-area-inset-bottom, 0px));
         }
 
-        /* ── HEADER ── */
         .header {
             text-align: center;
             padding: 36px 20px 24px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             margin-bottom: 24px;
         }
-
         .logo {
-            font-size: 44px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            color: #fff;
-            font-style: italic;
-            text-shadow: 0 0 10px rgba(255,26,26,0.5);
-            line-height: 1;
-            margin-bottom: 8px;
+            font-size: 44px; font-weight: 900; letter-spacing: -1px;
+            text-transform: uppercase; color: #fff; font-style: italic;
+            text-shadow: 0 0 10px rgba(255,26,26,0.5); line-height: 1; margin-bottom: 8px;
         }
         .logo span { color: #e00; }
+        .logo-sub { color: #555; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
 
-        .logo-sub {
-            color: #555;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-        }
-
-        /* ── PROGRESS ── */
-        .progress-bar {
-            height: 3px;
-            background: #222;
-            border-radius: 2px;
-            overflow: hidden;
-            margin-bottom: 28px;
-        }
+        .progress-bar { height: 3px; background: #222; border-radius: 2px; overflow: hidden; margin-bottom: 28px; }
         .progress-fill {
-            height: 100%;
-            background: var(--bright-red);
-            box-shadow: 0 0 10px var(--bright-red);
-            transition: width 0.5s ease;
-            width: 33%;
+            height: 100%; background: var(--bright-red);
+            box-shadow: 0 0 10px var(--bright-red); transition: width 0.5s ease; width: 33%;
         }
 
-        /* ── STEPS ── */
         .step { display: none; }
         .step.active { display: block; animation: fadeUp .35s ease; }
         @keyframes fadeUp {
@@ -91,13 +65,9 @@
             text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 20px;
         }
 
-        /* ── RULE CARDS ── */
         .rule-card {
-            background: rgba(255,255,255,0.02);
-            border-right: 3px solid var(--primary-red);
-            padding: 14px 14px 14px 10px;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            background: rgba(255,255,255,0.02); border-right: 3px solid var(--primary-red);
+            padding: 14px 14px 14px 10px; border-radius: 10px; margin-bottom: 10px;
         }
         .rule-card.warning { border-right-color: #ff9900; background: rgba(255,153,0,0.05); }
         .rule-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
@@ -106,70 +76,44 @@
         .rule-body .red { color: #cc3333; font-weight: 700; }
         .rule-body .orange { color: #e67e00; font-weight: 700; text-decoration: underline; }
 
-        /* ── CHECKBOXES ── */
         .agree-list { margin: 22px 0 28px; display: flex; flex-direction: column; gap: 10px; }
         .agree-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 14px;
-            padding: 14px 16px;
-            cursor: pointer;
-            -webkit-user-select: none;
-            user-select: none;
+            display: flex; align-items: flex-start; gap: 14px;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px; padding: 14px 16px; cursor: pointer;
+            -webkit-user-select: none; user-select: none;
         }
         .check-box {
-            width: 24px; height: 24px;
-            border: 2px solid #333;
-            border-radius: 6px;
-            background: #000;
-            flex-shrink: 0;
+            width: 24px; height: 24px; border: 2px solid #333; border-radius: 6px;
+            background: #000; flex-shrink: 0;
             display: flex; align-items: center; justify-content: center;
-            transition: all .2s;
-            margin-top: 1px;
+            transition: all .2s; margin-top: 1px;
         }
         .check-mark { color: #fff; font-size: 15px; font-weight: 900; display: none; line-height: 1; }
         .agree-text { font-size: 13.5px; color: #ccc; line-height: 1.5; }
 
-        /* ── FORM ── */
         .field-label {
-            display: block;
-            font-size: 10px; font-weight: 800; color: var(--bright-red);
+            display: block; font-size: 10px; font-weight: 800; color: var(--bright-red);
             text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px;
         }
         textarea {
-            width: 100%;
-            background: #000;
-            border: 1px solid #222;
-            border-radius: 14px;
-            color: #fff;
-            font-family: 'Assistant', sans-serif;
-            font-size: 15px; line-height: 1.6;
-            padding: 16px; resize: none; outline: none;
-            -webkit-appearance: none;
-            transition: border-color .2s, box-shadow .2s;
+            width: 100%; background: #000; border: 1px solid #222; border-radius: 14px;
+            color: #fff; font-family: 'Assistant', sans-serif;
+            font-size: 15px; line-height: 1.6; padding: 16px; resize: none; outline: none;
+            -webkit-appearance: none; transition: border-color .2s, box-shadow .2s;
         }
         textarea:focus { border-color: var(--bright-red); box-shadow: 0 0 0 3px rgba(255,26,26,0.12); }
         textarea::placeholder { color: #444; }
 
-        /* ── USERNAME FIELD (NEW) ── */
         .tg-input-wrap { position: relative; }
         .tg-at {
-            position: absolute; right: 16px; top: 50%;
-            transform: translateY(-50%);
+            position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
             color: #555; font-size: 16px; font-weight: 700; pointer-events: none;
         }
         .text-input {
-            width: 100%;
-            background: #000;
-            border: 1px solid #222;
-            border-radius: 14px;
-            color: #fff;
-            font-family: 'Assistant', sans-serif;
-            font-size: 15px; line-height: 1.6;
-            padding: 16px 36px 16px 16px;
+            width: 100%; background: #000; border: 1px solid #222; border-radius: 14px;
+            color: #fff; font-family: 'Assistant', sans-serif;
+            font-size: 15px; line-height: 1.6; padding: 16px 36px 16px 16px;
             outline: none; -webkit-appearance: none;
             transition: border-color .2s, box-shadow .2s;
             direction: ltr; text-align: right;
@@ -181,7 +125,6 @@
         .field-error.visible { display: block; }
         .field-hint { font-size: 11px; color: #444; margin-top: 6px; }
 
-        /* ── SELECT BUTTONS ── */
         .select-group { display: flex; flex-wrap: wrap; gap: 8px; }
         .sel-btn {
             background: #000; border: 1px solid #333; border-radius: 10px;
@@ -189,10 +132,7 @@
             font-size: 13px; font-weight: 700; padding: 10px 16px;
             cursor: pointer; transition: all .2s; user-select: none;
         }
-        .sel-btn.active {
-            background: rgba(153,0,0,0.2); border-color: var(--bright-red);
-            color: #fff;
-        }
+        .sel-btn.active { background: rgba(153,0,0,0.2); border-color: var(--bright-red); color: #fff; }
 
         .file-pick {
             background: #000; border: 1px solid #222; border-radius: 14px;
@@ -201,10 +141,8 @@
         .file-name { font-size: 13px; color: #555; }
         .file-name.selected { color: #fff; }
         .file-icon {
-            width: 36px; height: 36px;
-            background: rgba(153,0,0,0.15);
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
+            width: 36px; height: 36px; background: rgba(153,0,0,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
         }
         .file-icon svg { width: 18px; height: 18px; stroke: var(--bright-red); }
         .field-group { margin-bottom: 20px; }
@@ -217,7 +155,6 @@
             font-size: 13px; color: #fff; font-weight: 700; flex-shrink: 0;
         }
 
-        /* ── BOTTOM BAR ── */
         .bottom-bar {
             position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
             width: 100%; max-width: 480px;
@@ -228,54 +165,41 @@
         .btn-primary {
             width: 100%;
             background: linear-gradient(135deg, #990000 0%, #440000 100%);
-            border: 1px solid rgba(255,26,26,0.3);
-            border-radius: 14px; color: #fff;
-            font-family: 'Assistant', sans-serif;
-            font-size: 17px; font-weight: 800;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            padding: 18px; cursor: pointer;
+            border: 1px solid rgba(255,26,26,0.3); border-radius: 14px; color: #fff;
+            font-family: 'Assistant', sans-serif; font-size: 17px; font-weight: 800;
+            letter-spacing: 0.12em; text-transform: uppercase; padding: 18px; cursor: pointer;
             transition: all .2s; -webkit-appearance: none; outline: none; display: block;
         }
         .btn-primary:active:not(:disabled) { transform: scale(0.98); }
         .btn-primary:disabled { opacity: 0.2; filter: grayscale(1); }
         .btn-back {
             background: none; border: none; color: #555;
-            font-family: 'Assistant', sans-serif;
-            font-size: 12px; font-weight: 700;
+            font-family: 'Assistant', sans-serif; font-size: 12px; font-weight: 700;
             text-transform: uppercase; letter-spacing: 0.1em;
-            cursor: pointer; padding: 10px 0 0;
-            display: none; width: 100%; text-align: center;
+            cursor: pointer; padding: 10px 0 0; display: none; width: 100%; text-align: center;
         }
 
-        /* ── SUCCESS ── */
         .success-wrap { text-align: center; padding: 20px 0 40px; }
         .success-icon {
-            width: 80px; height: 80px; border-radius: 50%;
-            border: 1px solid var(--bright-red);
+            width: 80px; height: 80px; border-radius: 50%; border: 1px solid var(--bright-red);
             display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 24px;
-            box-shadow: 0 0 24px rgba(153,0,0,0.4);
+            margin: 0 auto 24px; box-shadow: 0 0 24px rgba(153,0,0,0.4);
             font-size: 38px; color: var(--bright-red); font-weight: 900;
         }
         .success-title { font-size: 30px; font-weight: 800; color: #fff; margin-bottom: 16px; }
         .success-box {
             background: rgba(153,0,0,0.06); border: 1px solid rgba(153,0,0,0.2);
-            border-radius: 18px; padding: 20px;
-            font-size: 14px; color: #aaa; line-height: 1.8;
+            border-radius: 18px; padding: 20px; font-size: 14px; color: #aaa; line-height: 1.8;
             margin-bottom: 32px; text-align: right;
         }
         .success-box strong { color: #e04444; }
         .tg-btn {
             display: flex; align-items: center; justify-content: center; gap: 12px;
             background: linear-gradient(135deg, #ff1a1a 0%, #990000 100%);
-            color: #fff; border-radius: 18px;
-            width: 100%;
-            padding: 22px 28px;
-            font-family: 'Assistant', sans-serif;
-            font-size: 18px; font-weight: 800;
+            color: #fff; border-radius: 18px; width: 100%; padding: 22px 28px;
+            font-family: 'Assistant', sans-serif; font-size: 18px; font-weight: 800;
             text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em;
-            transition: all .2s;
-            border: 1px solid rgba(255,100,100,0.4);
+            transition: all .2s; border: 1px solid rgba(255,100,100,0.4);
             box-shadow: 0 0 30px rgba(255,26,26,0.4), 0 0 60px rgba(153,0,0,0.2);
             animation: pulse 2s ease-in-out infinite;
         }
@@ -301,7 +225,6 @@
     <div class="step active" id="step1">
         <div class="step-title">תקנון הקהילה</div>
         <div class="step-sub">חובה לקרוא ולאשר לפני המשך</div>
-
         <div class="rule-card">
             <div class="rule-head"><span>🆔</span><span class="rule-title">זהות ופרטיות</span></div>
             <p class="rule-body">חל איסור מוחלט על חשיפת אדם בשמו המלא. התייחסות לחברים תהיה אך ורק בכינוי שלהם בקבוצה. <span class="red">אין להוציא אף חבר מהארון בשום צורה.</span></p>
@@ -318,7 +241,6 @@
             <div class="rule-head"><span>🤐</span><span class="rule-title">דיסקרטיות מוחלטת</span></div>
             <p class="rule-body">מה שקורה בקהילה נשאר בקהילה. צילום מסך או הקלטה יגררו הרחקה לצמיתות ללא אזהרה.</p>
         </div>
-
         <div class="agree-list">
             <div class="agree-row" id="row1">
                 <div class="check-box" id="box1"><span class="check-mark" id="mark1">✓</span></div>
@@ -336,7 +258,6 @@
         <div class="step2-title"><span class="step-num">2</span>הפוסט שלך</div>
         <div class="step-sub" style="margin-right:40px">ספר/י על העדפות, גבולות ומי את/ה.</div>
 
-        <!-- שם משתמש טלגרם -->
         <div class="field-group">
             <label class="field-label">👤 שם משתמש בטלגרם *</label>
             <div class="tg-input-wrap">
@@ -348,14 +269,12 @@
             <div class="field-hint">שם המשתמש שלך בטלגרם, ללא @ — חובה למילוי</div>
         </div>
 
-        <!-- ספר על עצמך -->
         <div class="field-group">
             <label class="field-label">💬 ספר/י על עצמך *</label>
             <textarea id="fieldAbout" rows="4" placeholder="קצת עליך, מה מחפש/ת..."></textarea>
             <div class="field-error" id="aboutError">שדה חובה</div>
         </div>
 
-        <!-- תמונה -->
         <div class="field-group">
             <label class="field-label">📷 העלאת תמונה</label>
             <input type="file" id="photoInput" accept="image/*" style="display:none">
@@ -369,21 +288,18 @@
             </div>
         </div>
 
-        <!-- שם / כינוי -->
         <div class="field-group">
             <label class="field-label">😊 שם / כינוי *</label>
             <input type="text" class="text-input" id="fieldName" placeholder="איך לקרוא לך?">
             <div class="field-error" id="nameError">שדה חובה</div>
         </div>
 
-        <!-- גיל -->
         <div class="field-group">
             <label class="field-label">🔞 גיל *</label>
             <input type="number" class="text-input" id="fieldAge" placeholder="גיל" min="18" max="99">
             <div class="field-error" id="ageError">שדה חובה (18+)</div>
         </div>
 
-        <!-- הצד שלי -->
         <div class="field-group">
             <label class="field-label">🎭 הצד שלי *</label>
             <div class="select-group" id="sideSelect">
@@ -396,7 +312,6 @@
             <div class="field-error" id="sideError">שדה חובה</div>
         </div>
 
-        <!-- סטטוס -->
         <div class="field-group">
             <label class="field-label">🔗 סטטוס</label>
             <div class="select-group" id="statusSelect">
@@ -406,7 +321,6 @@
             </div>
         </div>
 
-        <!-- ניסיון -->
         <div class="field-group">
             <label class="field-label">⛓️ ניסיון</label>
             <div class="select-group" id="expSelect">
@@ -416,13 +330,11 @@
             </div>
         </div>
 
-        <!-- גבולות אדומים -->
         <div class="field-group">
             <label class="field-label">❌ גבולות אדומים</label>
             <input type="text" class="text-input" id="fieldLimits" placeholder="מה הם הגבולות שלך?">
         </div>
 
-        <!-- מטרת הכניסה -->
         <div class="field-group">
             <label class="field-label">🎯 מטרת הכניסה לקבוצה</label>
             <input type="text" class="text-input" id="fieldGoal" placeholder="חברויות, קשר, סקרנות...">
@@ -454,8 +366,7 @@
 </div>
 
 <script>
-    const TELEGRAM_BOT_TOKEN = '8557711850:AAFyOb-Oa5tI-4wibyLBoHx4ju1lO-zmouo';
-    const TELEGRAM_CHAT_ID = '-1002472743528';
+    /* ── אין טוקן כאן — הכל עובר דרך /api/send ── */
     let currentStep = 1;
     const checked = { r1: false, r2: false };
     const selections = { side: '', status: '', exp: '' };
@@ -474,7 +385,6 @@
     setupCheck('row1','box1','mark1','r1');
     setupCheck('row2','box2','mark2','r2');
 
-    // Select buttons
     function setupSelect(groupId, key) {
         document.getElementById(groupId).querySelectorAll('.sel-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -488,16 +398,13 @@
     setupSelect('statusSelect', 'status');
     setupSelect('expSelect', 'exp');
 
-    document.getElementById('filePick').addEventListener('click', function() {
-        document.getElementById('photoInput').click();
-    });
+    document.getElementById('filePick').addEventListener('click', () => document.getElementById('photoInput').click());
     document.getElementById('photoInput').addEventListener('change', function(e) {
         if (e.target.files[0]) {
             document.getElementById('fileName').textContent = e.target.files[0].name;
             document.getElementById('fileName').classList.add('selected');
         }
     });
-
     document.getElementById('tgUsername').addEventListener('input', function() {
         this.value = this.value.replace(/^@+/, '').replace(/\s/g, '');
         document.getElementById('tgError').classList.remove('visible');
@@ -539,12 +446,12 @@
     }
 
     async function submitForm() {
-        const username = document.getElementById('tgUsername').value.trim().replace(/^@+/, '');
-        const name     = document.getElementById('fieldName').value.trim();
-        const age      = document.getElementById('fieldAge').value.trim();
-        const about    = document.getElementById('fieldAbout').value.trim();
-        const limits   = document.getElementById('fieldLimits').value.trim();
-        const goal     = document.getElementById('fieldGoal').value.trim();
+        const username  = document.getElementById('tgUsername').value.trim().replace(/^@+/, '');
+        const name      = document.getElementById('fieldName').value.trim();
+        const age       = document.getElementById('fieldAge').value.trim();
+        const about     = document.getElementById('fieldAbout').value.trim();
+        const limits    = document.getElementById('fieldLimits').value.trim();
+        const goal      = document.getElementById('fieldGoal').value.trim();
         const photoFile = document.getElementById('photoInput').files[0];
 
         let hasError = false;
@@ -554,7 +461,6 @@
         if (!selections.side) { showErr('sideError', 'נא לבחור צד'); hasError = true; }
         if (!about)    { showErr('aboutError', 'שדה חובה'); hasError = true; }
         if (hasError) return;
-
         if (!photoFile) { alert('נא לבחור תמונה'); return; }
 
         const caption = `🔥 פוסט היכרות חדש – TalkingBDSM
@@ -571,19 +477,25 @@
 
         const btn = document.getElementById('mainBtn');
         btn.disabled = true; btn.textContent = 'שולח...';
+
         try {
             const formData = new FormData();
-            formData.append('chat_id', TELEGRAM_CHAT_ID);
-            formData.append('photo', photoFile);
+            formData.append('photo',   photoFile);
             formData.append('caption', caption);
-            const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, { method: 'POST', body: formData });
-            if (res.ok) { goStep(3); } else { throw new Error(); }
+
+            /* ← קריאה לשרת שלנו, לא ישירות לטלגרם */
+            const res = await fetch('/api/send', { method: 'POST', body: formData });
+
+            if (res.ok) {
+                goStep(3);
+            } else {
+                throw new Error('server error');
+            }
         } catch {
             alert('שגיאה בשליחה. נסה שנית.');
             btn.disabled = false; btn.textContent = 'שלח לאישור';
         }
     }
 </script>
-
 </body>
 </html>
